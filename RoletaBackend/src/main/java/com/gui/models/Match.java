@@ -12,10 +12,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "matches", uniqueConstraints = { @UniqueConstraint(columnNames = "keywords")})
+@Table(name = "matches")
 public class Match {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
