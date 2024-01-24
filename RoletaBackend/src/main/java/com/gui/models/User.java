@@ -16,7 +16,6 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	
 	@NotBlank
 	@Size(max = 20)
@@ -34,14 +33,18 @@ public class User {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
+	private HashSet<Match> matches;
 
 	public User() {
 	}
 
-	public User(String username, String email, String password) {
+	public User(String username, String email, String password, HashSet<Match> matches) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.matches = matches;
 	}
 
 	public Long getId() {
@@ -83,5 +86,15 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
+	public HashSet<Match> getMatches() {
+		return matches;
+	}
+
+	public void setMatches(HashSet<Match> matches) {
+		this.matches = matches;
+	}
+	
+	
 
 }
