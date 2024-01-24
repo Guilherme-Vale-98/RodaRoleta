@@ -6,6 +6,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.gui.models.User;
+import com.gui.models.UserDetailsImpl;
+import com.gui.repositories.UserRepository;
+
 import jakarta.transaction.Transactional;
 
 @Service
