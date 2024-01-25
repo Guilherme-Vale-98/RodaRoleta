@@ -35,7 +35,7 @@ public class User {
 	private Set<Role> roles = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-	private HashSet<Match> matches;
+	private Set<Match> matches;
 
 	public User() {
 	}
@@ -45,6 +45,8 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
+	
+
 
 	public Long getId() {
 		return id;
@@ -86,11 +88,11 @@ public class User {
 		this.roles = roles;
 	}
 
-	public HashSet<Match> getMatches() {
+	public Set<Match> getMatches() {
 		return matches;
 	}
 
-	public void setMatches(HashSet<Match> matches) {
+	public void setMatches(Set<Match> matches) {
 		this.matches = matches;
 	}
 	

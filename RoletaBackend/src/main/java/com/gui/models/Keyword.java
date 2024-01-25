@@ -16,7 +16,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "keyword", uniqueConstraints = 
-{ @UniqueConstraint(columnNames = "word"), @UniqueConstraint(columnNames = "user")})
+{ @UniqueConstraint(columnNames = "answer")})
 public class Keyword {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
