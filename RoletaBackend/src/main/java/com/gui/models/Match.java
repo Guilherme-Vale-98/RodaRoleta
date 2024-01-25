@@ -1,6 +1,7 @@
 package com.gui.models;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
@@ -20,22 +22,27 @@ public class Match {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@ManyToMany(mappedBy = "match")
-	private HashSet<Keyword> keywords ;
+	
+	@ManyToMany
+	@JoinTable(
+			  name = "match_keyword", 
+			  joinColumns = @JoinColumn(name = "match_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "keyword_id"))
+	private Set<Keyword> keywords ;
+	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
 	private User user;
 	
-	@NotBlank
+
 	private Integer score;
 
-	public HashSet<Keyword> getKeywords() {
+	public Set<Keyword> getKeywords() {
 		return keywords;
 	}
 
-	public void setKeywords(HashSet<Keyword> keywords) {
+	public void setKeywords(Set<Keyword> keywords) {
 		this.keywords = keywords;
 	}
 
@@ -59,11 +66,11 @@ public class Match {
 		
 	}
 
-	public Match(HashSet<Keyword> keywords, User user, @NotBlank Integer score) {
+	public Match(Set<Keyword> keywords, User user) {
 		super();
 		this.keywords = keywords;
 		this.user = user;
-		this.score = score;
+		this.score = null;
 	}
 	
 	

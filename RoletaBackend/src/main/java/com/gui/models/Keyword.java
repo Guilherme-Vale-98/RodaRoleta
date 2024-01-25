@@ -1,6 +1,7 @@
 package com.gui.models;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,11 +31,7 @@ public class Keyword {
 	@Size(max = 100)
 	private String hint;
 	
-	@ManyToMany
-	@JoinTable(
-	  name = "match_keyword", 
-	  joinColumns = @JoinColumn(name = "keyword_id"), 
-	  inverseJoinColumns = @JoinColumn(name = "match_id"))
-	private HashSet<Match> match;
+	@ManyToMany(mappedBy = "keywords")
+	private Set<Match> match;
 	
 }
