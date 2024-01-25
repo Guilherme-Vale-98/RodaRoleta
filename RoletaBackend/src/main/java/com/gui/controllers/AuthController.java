@@ -2,6 +2,7 @@ package com.gui.controllers;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gui.models.ERole;
+import com.gui.models.Keyword;
+import com.gui.models.Match;
 import com.gui.models.Role;
 import com.gui.models.User;
 import com.gui.models.UserDetailsImpl;
@@ -26,21 +29,25 @@ import com.gui.payload.requests.LoginRequest;
 import com.gui.payload.requests.SignupRequest;
 import com.gui.payload.responses.JwtResponse;
 import com.gui.payload.responses.MessageResponse;
+import com.gui.repositories.KeywordRepository;
+import com.gui.repositories.MatchRepository;
 import com.gui.repositories.RoleRepository;
 import com.gui.repositories.UserRepository;
 import com.gui.security.JwtUtils;
+import com.gui.services.KeywordService;
 
 import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "http://localhost:5173", maxAge = 3600, allowCredentials = "true")
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
   @Autowired
   AuthenticationManager authenticationManager;
 
   @Autowired
   UserRepository userRepository;
+
 
   @Autowired
   RoleRepository roleRepository;
@@ -51,7 +58,7 @@ public class AuthController {
   @Autowired
   JwtUtils jwtUtils;
 
-  @PostMapping("/signin")
+  @PostMapping("login")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
     Authentication authentication = authenticationManager
@@ -93,4 +100,5 @@ public class AuthController {
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
+    
 }
