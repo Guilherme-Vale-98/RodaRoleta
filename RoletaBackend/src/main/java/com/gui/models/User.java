@@ -34,17 +34,16 @@ public class User {
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private HashSet<Match> matches;
 
 	public User() {
 	}
 
-	public User(String username, String email, String password, HashSet<Match> matches) {
+	public User(String username, String email, String password) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.matches = matches;
 	}
 
 	public Long getId() {

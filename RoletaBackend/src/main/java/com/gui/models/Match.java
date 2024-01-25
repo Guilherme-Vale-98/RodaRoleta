@@ -24,7 +24,7 @@ public class Match {
 	private HashSet<Keyword> keywords ;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "matches_id")
+    @JoinColumn(name = "user_id")
 	private User user;
 	
 

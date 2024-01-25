@@ -15,7 +15,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "keywords", uniqueConstraints = 
+@Table(name = "keyword", uniqueConstraints = 
 { @UniqueConstraint(columnNames = "word"), @UniqueConstraint(columnNames = "user")})
 public class Keyword {
 	@Id
@@ -33,8 +33,8 @@ public class Keyword {
 	@ManyToMany
 	@JoinTable(
 	  name = "match_keyword", 
-	  joinColumns = @JoinColumn(name = "keywords_id"), 
-	  inverseJoinColumns = @JoinColumn(name = "matches_id"))
+	  joinColumns = @JoinColumn(name = "keyword_id"), 
+	  inverseJoinColumns = @JoinColumn(name = "match_id"))
 	private HashSet<Match> match;
 	
 }
