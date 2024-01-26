@@ -4,6 +4,8 @@ package com.gui.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -35,6 +37,7 @@ public class User {
 	private Set<Role> roles = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<Match> matches;
 
 	public User() {

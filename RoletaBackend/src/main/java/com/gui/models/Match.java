@@ -1,7 +1,7 @@
 package com.gui.models;
 
-import java.util.HashSet;
 import java.util.Set;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+
 
 @Entity
 @Table(name = "matches")
@@ -62,6 +62,10 @@ public class Match {
 		this.score = score;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+	
 	public Match() {
 		
 	}
@@ -72,6 +76,13 @@ public class Match {
 		this.user = user;
 		this.score = null;
 	}
+
+	@Override
+	public String toString() {
+		return "Match [id=" + id + ", keywords=" + keywords + ", user=" + user + ", score=" + score + "]";
+	}
+	
+	
 	
 	
 	
