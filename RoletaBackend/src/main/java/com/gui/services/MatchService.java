@@ -29,4 +29,13 @@ public class MatchService {
 		return match;	
 	}
 	
+	public Match findById(Long id) {
+		return matchRepository.findById(id).orElseThrow();
+	}
+	
+	public Match saveMatch(Match match) {
+		return matchRepository.saveAndFlush(match);
+		
+	}
+	
 }

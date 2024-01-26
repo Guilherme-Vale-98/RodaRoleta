@@ -31,8 +31,6 @@ public class UserController {
   @Autowired
   MatchService matchService;
   
-  @Autowired
-  MatchRepository matchRepository;
 	
   @GetMapping("/all")
   @PreAuthorize("hasRole('USER')")
@@ -45,7 +43,18 @@ public class UserController {
   public ResponseEntity<MatchResponse> startMatch(@Valid @RequestBody LoginRequest loginRequest) {
     User user = userRepository.findByUsername(loginRequest.getUsername()).orElseThrow();
     Match match = matchService.generateMatch(user);
-    
     return ResponseEntity.ok(new MatchResponse(match.getId(),match.getKeywords(), match.getUser().getUsername(), match.getScore()));
   }
+  
+  @PostMapping("/match/save-score")
+  @PreAuthorize("hasRole('USER')")
+  public ResponseEntity saveScore(@Valid @RequestBody MatchResponse matchBody) {
+    Match match = matchService.findById(matchBody.getId());
+    match.setScore(matchBody.getScore());
+    
+    matchService.saveMatch(match);
+    return ResponseEntity.ok().build();
+  }
+  
+  
 }

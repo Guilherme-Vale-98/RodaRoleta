@@ -11,8 +11,6 @@ public class MatchResponse {
 	private Integer score;
 
 	
-	
-
 	public Long getId() {
 		return id;
 	}
