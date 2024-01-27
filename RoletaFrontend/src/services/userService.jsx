@@ -14,8 +14,6 @@ const getUserBoard = () => {
 const userService = {
   getPublicContent,
   getUserBoard,
-  getModeratorBoard,
-  getAdminBoard,
 };
 
 export default userService
