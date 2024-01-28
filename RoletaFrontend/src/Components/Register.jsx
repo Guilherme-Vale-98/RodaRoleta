@@ -50,7 +50,6 @@ const Register = () => {
     const { username, email, password } = formValue;
 
     setSuccessful(false);
-
     dispatch(register({ username, email, password }))
       .unwrap()
       .then(() => {
