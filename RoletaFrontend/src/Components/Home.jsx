@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../slices/sliceAuth";
 
 const Home = () => {
-  return (
-    <div>HERES HOME: </div>
-  )
-}
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  console.log(currentUser)
 
-export default Home
+ 
+  return(<div>
+    HERES HOME: {currentUser?.username}
+    </div>)
+  
+};
+
+export default Home;

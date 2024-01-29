@@ -5,13 +5,14 @@ import './App.css'
 import Home from './Components/Home'
 import { Route, Routes } from 'react-router-dom'
 import Form from './Components/Register'
+import Login from './Components/Login'
 
 function App() {
   return (
     <>
     <Routes>
       <Route path='/' element={<Home/>}></Route>
-
+      <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Form/>}></Route>
     </Routes>
 
