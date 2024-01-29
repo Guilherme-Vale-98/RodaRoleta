@@ -7,9 +7,13 @@ const Home = () => {
   const dispatch = useDispatch();
   console.log(currentUser)
 
- 
+  const logOut = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
+  
   return(<div>
     HERES HOME: {currentUser?.username}
+    <button onClick={logOut}>Logout</button>
     </div>)
   
 };
