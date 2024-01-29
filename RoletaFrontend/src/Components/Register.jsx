@@ -32,8 +32,8 @@ const Register = () => {
         val.toString().length >= 3 &&
         val.toString().length <= 20
     ).required("Esse campo é obrigatório!"),
-    email: Yup.string().email("This is not a valid email.")
-    .required("This field is required!"),
+    email: Yup.string().email("Este não é um email válido.")
+    .required("Esse campo é obrigatório!"),
     password: Yup.string()
     .test(
       "len",
@@ -42,7 +42,7 @@ const Register = () => {
         val &&
         val.toString().length >= 4
     )
-    .required("This field is required!"),
+    .required("Esse campo é obrigatório!"),
   })
 
   
