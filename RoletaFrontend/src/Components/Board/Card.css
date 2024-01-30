@@ -1,0 +1,45 @@
+  .card {
+    perspective: 500px;
+    cursor: pointer;
+    border: 2px solid red;
+    caret-color: transparent;
+  }
+  .disabled{
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  
+  .content {
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    border: 2px solid black;
+  }
+  
+  .turn .content {
+    transform: rotateY( 180deg ) ;
+    transition: transform 0.5s;
+  }
+  
+  .front,
+  .back {
+    color: black;
+    width: 4rem;
+    height: 4rem;
+    background: #0000FF;
+    backface-visibility: hidden;
+  }
+  
+
+
+  .front {
+    position: absolute;
+    top: 0px;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FFFFFF;
+    transform: rotateY(180deg);
+    font-size: 4.5rem;
+    font-weight: bolder;
+    justify-content: center;
+    align-items: center;
+  }
