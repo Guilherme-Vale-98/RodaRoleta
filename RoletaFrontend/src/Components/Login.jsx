@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-
+import "../app.css"
 import { login } from "../slices/sliceAuth";
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { clearMessage } from "../slices/sliceMessage";
 import { Navigate } from 'react-router-dom';
+import App from '../App';
 const Login = () => {
 
     const [loading, setLoading] = useState(false);
@@ -47,7 +48,7 @@ const Login = () => {
       }
 
       return (
-        <div className="">
+        <div className="form">
           <div className="">
             <Formik
               initialValues={initialValues}
