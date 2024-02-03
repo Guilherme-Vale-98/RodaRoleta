@@ -15,6 +15,8 @@
   position: relative;
   padding: 5px;
   overflow: hidden;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+
 }
 .login-title{
   z-index: 4;
@@ -26,8 +28,9 @@
   flex-wrap: wrap;
   min-height: 300px;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   align-items: center;
+
 }
 .circle{
   width: 900px;
@@ -41,6 +44,7 @@
 }
 .form-inputs{
   z-index: 4;
+  height: 60px;
 }
 .button-wrapper{
   z-index: 4;
@@ -64,10 +68,11 @@
   box-sizing:border-box;
   border-radius: 10px;
   padding-left: 50px;
+  color: #4D575C;
 
 }
 .icon{
-  color: black;
+  color: #4D575C;
 }
 .icon-wrapper{
   height: 40px;
