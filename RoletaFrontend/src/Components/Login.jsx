@@ -81,7 +81,7 @@ const Login = () => {
               <label htmlFor="password"></label>
               <Field
                 name="password"
-                placeholder="Senhaaaaaaaaaaa"
+                placeholder="Senha"
                 type="password"
                 className=""
               />
