@@ -55,7 +55,7 @@ const Wheel = () => {
           alt="Wheel"
           animate={{ rotate: rotationDegree }}
           transition={{
-            duration: 3,
+            duration: 7,
             ease: [0.2, 0.8, 0.2, 0.8],
           }}
         />

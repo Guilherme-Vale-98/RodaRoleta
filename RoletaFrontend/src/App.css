@@ -4,3 +4,78 @@
   padding: 2rem;
   text-align: center;
 }
+
+
+.form{
+  width: 250px;
+  height: 300px;
+  background-color: #FDD768;
+  border-radius: 10%;
+  border: 4px solid #EE7855;
+  position: relative;
+  padding: 5px;
+  overflow: hidden;
+}
+.login-title{
+  z-index: 4;
+  font-size: larger;
+  color: #D78245;
+}
+.form-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 300px;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+.circle{
+  width: 900px;
+  height: 700px;
+  left: 30px;
+  top: 0px;
+  border-radius: 999999px;
+  background-color: #FA9F4E;
+  position: absolute;
+  z-index: 0;
+}
+.form-inputs{
+  z-index: 4;
+}
+.button-wrapper{
+  z-index: 4;
+  height: 100px;
+}
+
+.button-wrapper>button{
+  width: 200px;
+  background-color: #F27851;
+  font-size: larger;
+  margin-top: 5px;
+  border-radius: 25px;
+}
+
+.form-inputs>input{
+  height: 40px;
+  width: 200px;
+  font-size: larger;
+  background-color: #CCCCCC;
+  border: 0;
+  box-sizing:border-box;
+  border-radius: 10px;
+  padding-left: 50px;
+
+}
+.icon{
+  color: black;
+}
+.icon-wrapper{
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FA9F4E;
+  position: absolute;
+  border-radius: 10px;
+}
