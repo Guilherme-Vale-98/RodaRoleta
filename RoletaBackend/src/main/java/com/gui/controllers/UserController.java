@@ -1,5 +1,7 @@
 package com.gui.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,8 +34,8 @@ public class UserController {
   MatchService matchService;
   
   @PostMapping("/match")
-  public ResponseEntity<MatchResponse> startMatch(@Valid @RequestBody LoginRequest loginRequest) {
-    User user = userRepository.findByUsername(loginRequest.getUsername()).orElseThrow();
+  public ResponseEntity<MatchResponse> startMatch(@Valid @RequestBody Map<String, String> username) {
+    User user = userRepository.findByUsername(username.get("username")).orElseThrow();
     Match match = matchService.generateMatch(user);
     return ResponseEntity.ok(new MatchResponse(match.getId(),match.getKeywords(), match.getUser().getUsername(), match.getScore()));
   }
