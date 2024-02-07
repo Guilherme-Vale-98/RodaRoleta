@@ -2,9 +2,8 @@ import React, { useCallback } from "react";
 import Wheel from "../Wheel/Wheel";
 import WordBoard from "../Board/WordBoard";
 import "./Match.css";
-import matchService from "../../services/MatchService";
 import { useSelector } from "react-redux";
-import userService from "../../services/userService";
+import matchService from "../../services/MatchService";
 
 const Match = () => {
     const { user: currentUser } = useSelector((state) => state.auth);
