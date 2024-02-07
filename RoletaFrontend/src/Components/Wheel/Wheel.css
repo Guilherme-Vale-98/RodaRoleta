@@ -1,6 +1,8 @@
 .wheel-container{
     width: 600px;
-    position: relative;
+    position: absolute;
+    left: 1100px;
+    top: -180px;
 }
 .wheel-container>img{
     max-width: 100%;
