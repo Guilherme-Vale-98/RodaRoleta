@@ -13,11 +13,12 @@ const saveMatchScore = (matchId, score) => {
     }, { headers: authHeader() });
   };
 
-const generateMatch = (username)=>{
+const generateMatch = async (username)=>{
     console.log('aqui: '+ username)
-    return axios.post(API_URL, {
+    const response = await axios.post(API_URL, {
         username
-      }, { headers: authHeader() });
+    }, { headers: authHeader() });
+    return response.data;
 }
 const matchService = {
     saveMatchScore,
