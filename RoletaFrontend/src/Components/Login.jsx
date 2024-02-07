@@ -71,7 +71,7 @@ const Login = () => {
                 placeholder="Usuário"
                 className=""
               />
-              <ErrorMessage name="username" component="div" className="" />
+              <ErrorMessage name="username" component="div" className="error" />
             </div>
 
             <div className="form-inputs">
@@ -85,7 +85,7 @@ const Login = () => {
                 type="password"
                 className=""
               />
-              <ErrorMessage name="password" component="div" className="" />
+              <ErrorMessage name="password" component="div" className="error" />
             </div>
 
             <div className="button-wrapper">
