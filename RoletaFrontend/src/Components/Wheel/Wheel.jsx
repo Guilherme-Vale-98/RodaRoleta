@@ -46,8 +46,6 @@ const Wheel = () => {
   console.log(spinResult);
 
   return (
-    <div>
-      Wheel:
       <div className="wheel-container">
         <div className="picker"></div>
         <motion.img
@@ -63,7 +61,6 @@ const Wheel = () => {
           Spin Wheel
         </div>
       </div>
-    </div>
   );
 };
 

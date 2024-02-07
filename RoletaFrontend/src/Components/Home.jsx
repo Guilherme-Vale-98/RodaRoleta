@@ -15,10 +15,7 @@ const Home = () => {
 
   return (
     <div>
-      HERES HOME: {currentUser?.username}
-      <button onClick={logOut}>Logout</button>
-      <WordBoard word={"BANANA"}></WordBoard>
-      <Wheel/>
+      <button onClick={logOut}>Jogar</button>
     </div>
 
   );
