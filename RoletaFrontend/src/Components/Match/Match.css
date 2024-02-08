@@ -5,6 +5,7 @@
     width: 1090px;
     height: 400px;
     position: relative;
+    top: 30px;
 }
 .hint-container{
     width: auto;

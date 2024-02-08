@@ -54,7 +54,6 @@ const Wheel = () => {
     });
   };
 
-  console.log(spinResult);
 
   return (
       <motion.div className="wheel-container toLeft"
@@ -74,7 +73,7 @@ const Wheel = () => {
           }}
         />
         <div className="spin-button" onClick={handleSpinButtonClick}>
-          Spin Wheel
+          Spin Wheel: {spinResult}
         </div>
       </motion.div>
   );
