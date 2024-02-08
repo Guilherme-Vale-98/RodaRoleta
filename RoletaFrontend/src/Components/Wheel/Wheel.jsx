@@ -1,11 +1,21 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import wheel from "../../assets/wheel.png";
 import "./Wheel.css";
 
 const Wheel = () => {
   const [rotationDegree, setRotationDegree] = useState(0);
   const [spinResult, setSpinResult] = useState(null);
+
+
+  const [isActive, setIsActive] = useState(false);
+  const controls = useAnimation();
+
+  const toggleAnimation = () => {
+    setIsActive(!isActive);
+    controls.start({ x: isActive ? 0 : 900 });
+  };
+
 
   const wheelValues = [
     "perdeu",
@@ -34,6 +44,7 @@ const Wheel = () => {
     1000,
   ];
 
+
   const handleSpinButtonClick = () => {
     const randomIndex = Math.random() * wheelValues.length;
     setRotationDegree((prevRotationdegree) => {
@@ -46,7 +57,12 @@ const Wheel = () => {
   console.log(spinResult);
 
   return (
-      <div className="wheel-container">
+      <motion.div className="wheel-container toLeft"
+      initial={{ x: 0 }}
+      animate={controls}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      onClick={toggleAnimation}
+      >
         <div className="picker"></div>
         <motion.img
           src={wheel}
@@ -60,7 +76,7 @@ const Wheel = () => {
         <div className="spin-button" onClick={handleSpinButtonClick}>
           Spin Wheel
         </div>
-      </div>
+      </motion.div>
   );
 };
 
