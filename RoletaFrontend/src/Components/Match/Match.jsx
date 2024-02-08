@@ -2,24 +2,30 @@ import React, { useCallback } from "react";
 import Wheel from "../Wheel/Wheel";
 import WordBoard from "../Board/WordBoard";
 import "./Match.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import matchService from "../../services/MatchService";
+import { startMatch } from "../../slices/sliceMatch";
 
 const Match = () => {
-    const { user: currentUser } = useSelector((state) => state.auth);
-
-    
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const match = useSelector(state => state.match);
+  const hint = match.keywords ? match.keywords[0].hint : '';
+  const word = match.keywords ? match.keywords[0].answer : '';
+  console.log(hint);
   const handleClick=()=>{
-    return matchService.generateMatch(currentUser.username)
+    dispatch(startMatch({username: currentUser.username})).unwrap().then().catch();
+    return 
   }
+
 
   return (
     <>
       <div className="match-container">
       <button onClick={handleClick}>Generate Match</button>
-        <WordBoard word={"GIRAFA"}></WordBoard>
+        <WordBoard word={word}></WordBoard>
         <div className="hint-container">
-            Tem no zoologico
+            {hint}
         </div>
         <Wheel />
       </div>
