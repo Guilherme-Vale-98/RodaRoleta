@@ -5,6 +5,7 @@ import "./Match.css";
 import { useDispatch, useSelector } from "react-redux";
 import matchService from "../../services/MatchService";
 import { startMatch } from "../../slices/sliceMatch";
+import PlayerCard from "../PlayerCard/PlayerCard";
 
 const Match = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -23,6 +24,7 @@ const Match = () => {
     <>
       <div className="match-container">
       <button onClick={handleClick}>Generate Match</button>
+        <PlayerCard/>
         <WordBoard word={word}></WordBoard>
         <div className="hint-container">
             {hint}
