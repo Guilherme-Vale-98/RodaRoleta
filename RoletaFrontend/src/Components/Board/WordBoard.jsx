@@ -9,9 +9,9 @@ const WordBoard = ({word}) => {
     letters.splice(15, word.length, ...word)   
     return letters.map((element, index)=>{
     if(index == 0 || index == 13 || index == 42 || index == 55 ){
-      return <div></div>
+      return <div key={index}></div>
     }
-    return <Card letter={element}></Card>}
+    return <Card letter={element} key={index}></Card>}
 
   )
   }
