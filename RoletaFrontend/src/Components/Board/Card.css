@@ -16,8 +16,9 @@
   }
   
   .turn .content {
-    transform: rotateY( 180deg ) ;
-    transition: transform 0.5s;
+    transform: rotateY( 180deg );
+    transition: transform 1s;
+    transition-delay: 2s;
   }
   
   .front,
@@ -28,9 +29,10 @@
     background: #0000FF;
     backface-visibility: hidden;
   }
-  
 
-
+  .green{
+    background: yellowgreen;
+  }
   .front {
     position: absolute;
     top: 0px;
