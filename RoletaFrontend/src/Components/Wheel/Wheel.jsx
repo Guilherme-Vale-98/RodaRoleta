@@ -3,9 +3,9 @@ import { motion, useAnimation } from "framer-motion";
 import wheel from "../../assets/wheel.png";
 import "./Wheel.css";
 
-const Wheel = () => {
+const Wheel = ({setSpinResult}) => {
   const [rotationDegree, setRotationDegree] = useState(0);
-  const [spinResult, setSpinResult] = useState(null);
+  
 
 
   const [isActive, setIsActive] = useState(false);
@@ -73,7 +73,7 @@ const Wheel = () => {
           }}
         />
         <div className="spin-button" onClick={handleSpinButtonClick}>
-          Spin Wheel: {spinResult}
+          Spin Wheel
         </div>
       </motion.div>
   );
