@@ -46,6 +46,7 @@ const Match = () => {
       .unwrap()
       .then()
       .catch();
+      setPlayerLetterArray([]);
     return;
   };
 
@@ -57,6 +58,7 @@ const Match = () => {
           spinResult={spinResult}
           matchScore={matchScore}
           setPlayerLetter={setPlayerLetter}
+          playerLetterArray={playerLetterArray}
         />
         <WordBoard
           word={word}

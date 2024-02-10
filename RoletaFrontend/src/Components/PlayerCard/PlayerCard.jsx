@@ -3,9 +3,8 @@ import './PlayerCard.css'
 import { motion, useAnimation } from "framer-motion";
 
 
-const PlayerCard = ({spinResult, matchScore, setPlayerLetter}) => {
+const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray}) => {
   const [chosenLetter, setChosenLetter] = useState('');
-
   const handleChange = (event) => {
     setChosenLetter(event.target.value);
   };
@@ -17,7 +16,10 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter}) => {
     setIsActive(!isActive);
     controls.start({ y: isActive ? 0 : 0 });
   };
-  const chooseClickHandler = () => {  
+  const chooseClickHandler = () => {
+      if(!chosenLetter){
+        return
+      }  
     setPlayerLetter(chosenLetter.toLocaleUpperCase());
     setChosenLetter('');
   }
@@ -30,7 +32,7 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter}) => {
     >
       <p>Player: </p>
       <div>Score: {matchScore}</div>
-      <div>Letras escolhidas:</div>
+      <div>Letras escolhidas: {playerLetterArray}</div>
       <div>Escolha uma letra por: {spinResult}
         <input type="text"  value={chosenLetter} 
         onChange={handleChange} maxLength="1"/>
