@@ -14,8 +14,8 @@ const Match = () => {
   const word = match.keywords ? match.keywords[0].answer : "";
   const [spinResult, setSpinResult] = useState(0);
   const [matchScore, setMatchScore] = useState(0);
-  const [playerLetter, setPlayerLetter] = useState(null);
-  const [playerLetterArray, setPlayerLetterArray] = useState([]);
+  const [playerLetter, setPlayerLetter] = useState('');
+  const [playerLetterArray, setPlayerLetterArray] = useState(['']);
   const dispatch = useDispatch();
   
   
@@ -49,7 +49,6 @@ const Match = () => {
       setPlayerLetterArray([]);
     return;
   };
-
   return (
     <>
       <div className="match-container">
@@ -59,6 +58,7 @@ const Match = () => {
           matchScore={matchScore}
           setPlayerLetter={setPlayerLetter}
           playerLetterArray={playerLetterArray}
+          setSpinResult={setSpinResult}
         />
         <WordBoard
           word={word}
@@ -67,7 +67,7 @@ const Match = () => {
         <div className="hint-container">
           {hint}
         </div>
-        <Wheel setSpinResult={setSpinResult} />
+        <Wheel setSpinResult={setSpinResult} playerLetter={playerLetter} />
       </div>
     </>
   );
