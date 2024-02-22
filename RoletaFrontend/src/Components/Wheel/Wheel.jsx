@@ -9,8 +9,7 @@ const Wheel = ({setSpinResult, playerLetter }) => {
   const controls = useAnimation();
 
   const toggleAnimation = () => {
-    setIsActive(!isActive);
-    
+    setIsActive(!isActive);  
     setTimeout(()=>{
       controls.start({ x: isActive ? 0 : 900 });
     }, isActive ? 3 * 1000 : 9 * 1000);
