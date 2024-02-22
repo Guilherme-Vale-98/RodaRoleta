@@ -16,6 +16,7 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray,
   const controls = useAnimation();
 
   const toggleAnimation = () => {
+    console.log('anima')
     setIsActive(!isActive);
     setTimeout(() => {
       controls.start({ y: isActive ? 0 : 250 });
@@ -49,7 +50,7 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray,
       <div>Score: {matchScore}</div>
       <div>Letras escolhidas: {playerLetterArray}</div>
       <div>Escolha uma letra por: {spinResult}
-        <input type="text"  value={chosenLetter} 
+        <input type="text" disabled={!isActive} value={chosenLetter} 
         onChange={handleChange} maxLength="1"/>
         <button onClick={chooseClickHandler}>Escolher</button>
       </div>
