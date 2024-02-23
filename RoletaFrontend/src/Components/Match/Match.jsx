@@ -17,8 +17,9 @@ const Match = () => {
   const [playerLetter, setPlayerLetter] = useState('');
   const [playerLetterArray, setPlayerLetterArray] = useState(['']);
   const dispatch = useDispatch();
+  const [animate, setAnimate]=useState(false);
   
-  
+
   useEffect(()=>{
     setPlayerLetterArray(prevArray => [...prevArray, playerLetter]);
   }, [playerLetter])
@@ -58,7 +59,8 @@ const Match = () => {
           matchScore={matchScore}
           setPlayerLetter={setPlayerLetter}
           playerLetterArray={playerLetterArray}
-          setSpinResult={setSpinResult}
+          animate={animate} 
+          setAnimate={setAnimate}
         />
         <WordBoard
           word={word}
@@ -67,7 +69,7 @@ const Match = () => {
         <div className="hint-container">
           {hint}
         </div>
-        <Wheel setSpinResult={setSpinResult} playerLetter={playerLetter} />
+        <Wheel setSpinResult={setSpinResult} playerLetter={playerLetter} animate={animate} setAnimate={setAnimate} spinResult={spinResult}/>
       </div>
     </>
   );
