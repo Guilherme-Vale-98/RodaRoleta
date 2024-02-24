@@ -5,20 +5,20 @@ import "./Wheel.css";
 
 const Wheel = ({setSpinResult, playerLetter, spinResult, animate, setAnimate }) => {
   const [rotationDegree, setRotationDegree] = useState(0);
-  let isActive = false;
+  const [isActive, setIsActive] = useState(false);
   const controls = useAnimation();
 
   const toggleAnimation = () => {
-    isActive = !isActive;  
-    setTimeout(()=>{
-      controls.start({ x: !isActive ? 0 : 900 });
-    }, !isActive ? 3 * 1000 : 9 * 1000);
-    if(spinResult === 'perdeu'){
+    setIsActive(!isActive);
+    if(spinResult==='perdeu'){
       setTimeout(() => {
-        isActive = !isActive;
-        controls.start({ x: 0 });  
-      }, 12500);
+        controls.start({ x: isActive ? 0 : 900 });      
+      }, isActive ? 1000 : 9 * 1000);
+      return
     }
+    setTimeout(()=>{
+      controls.start({ x: isActive ? 0 : 900 });
+    }, isActive ? 3 * 1000 : 9 * 1000);
   };
 
   useEffect(()=>{  
@@ -63,8 +63,8 @@ const Wheel = ({setSpinResult, playerLetter, spinResult, animate, setAnimate }) 
     setAnimate(!animate);
     const randomIndex = Math.random() * wheelValues.length;
     setRotationDegree((prevRotationdegree) => {
-    // const nextRotationDegree = prevRotationdegree + 15 * randomIndex + 360;
-    const nextRotationDegree = prevRotationdegree+360;
+    const nextRotationDegree = prevRotationdegree + 15 * randomIndex + 360;
+    
 
     setSpinResult(wheelValues[Math.floor(nextRotationDegree / 15) % 24]);
     return nextRotationDegree;
