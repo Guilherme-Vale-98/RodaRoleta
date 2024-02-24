@@ -17,14 +17,15 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray,
 
   const toggleAnimation = () => { 
     setIsActive(!isActive);
+    if(spinResult==='perdeu'){
+      setTimeout(() => {
+        controls.start({ y: isActive ? 0 : 250 });      
+      }, isActive ? 1000 : 9 * 1000);
+      return
+    }
     setTimeout(() => {
       controls.start({ y: isActive ? 0 : 250 });      
     }, isActive ? 3 * 1000 : 9 * 1000);
-    if(spinResult === 'perdeu'){
-      setTimeout(() => {
-        controls.start({ y: 0 });      
-      }, 12500);
-    }
   };
   useEffect(()=>{
     if(spinResult){
@@ -39,7 +40,7 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray,
       if(playerLetterArray.includes(chosenLetter.toLocaleUpperCase())){
         return
       }
-      setAnimate(!animate)
+      setAnimate(!animate);
       setPlayerLetter(chosenLetter.toLocaleUpperCase());
       setChosenLetter('');
   }
@@ -49,7 +50,10 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray,
       animate={controls}
       transition={{ duration: 1, ease: "easeInOut"}}
     >
-      {spinResult === "perdeu"? "Sinto muito, perdeu tudo!":(<><p>Player: {currentUser.username}</p>
+      {spinResult === "perdeu"? (<><p>Ah que pena, perdeu tudo!</p>
+      <div>Score: {matchScore}</div>
+        <button onClick={() => setAnimate(!animate)}>Continuar</button>
+      </>):(<><p>Player: {currentUser.username}</p>
       <div>Score: {matchScore}</div>
       <div>Letras escolhidas: {playerLetterArray}</div>
       <div>Escolha uma letra por: {spinResult}
