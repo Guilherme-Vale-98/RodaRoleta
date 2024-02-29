@@ -22,8 +22,28 @@ export const startMatch = createAsyncThunk(
     }
   );
 
-const initialState = {}
 
+  export const saveScore = createAsyncThunk(
+    "match/save",
+    async ({ matchId, score }, thunkAPI) => {
+      try { 
+        const response = await matchService.saveMatchScore(matchId, score);
+        thunkAPI.dispatch(setMessage("Partida salva"));
+        return response;
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        thunkAPI.dispatch(setMessage(message));
+        return thunkAPI.rejectWithValue();
+      }
+    }
+  );
+
+const initialState = {}
 
 const matchSlice = createSlice({
     name: "match",
@@ -31,7 +51,11 @@ const matchSlice = createSlice({
     reducers: {  
         clearMatch: () => {
             return {};
-          }, 
+          },
+        addScore: (state, action) =>{
+          const score = action.payload;
+          state.score = score;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -40,10 +64,15 @@ const matchSlice = createSlice({
           })
           .addCase(startMatch.rejected, (state, action) => {
           })
+          .addCase(saveScore.fulfilled, (state, action) => {
+          })
+          .addCase(saveScore.rejected, (state, action) => {
+          });
         }
 })
 
-const {reducer} = matchSlice;
+const {reducer, actions} = matchSlice;
+export const { clearMatch, addScore } = actions;
 export default reducer;
 
 
