@@ -8,6 +8,9 @@ import { useSelector } from 'react-redux';
 const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray, animate, setAnimate}) => {
   const [chosenLetter, setChosenLetter] = useState('');
   const { user: currentUser } = useSelector((state) => state.auth);
+  const [buttonClicked, setButtonClicked] = useState(false)
+
+
   const handleChange = (event) => {
     setChosenLetter(event.target.value);
   };
@@ -15,12 +18,15 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray,
   const [isActive, setIsActive] = useState(false);
   const controls = useAnimation();
 
-  const toggleAnimation = () => { 
+  const toggleAnimation = () => {
     setIsActive(!isActive);
-    if(spinResult==='perdeu'){
-      setTimeout(() => {
-        controls.start({ y: isActive ? 0 : 250 });      
+    if(spinResult === 'perdeu'){
+      setTimeout(() => {       
+        controls.start({ y: isActive ? 0 : 250 });    
       }, isActive ? 1000 : 9 * 1000);
+      setTimeout(() => {       
+        setButtonClicked(false);    
+      }, 1500);
       return
     }
     setTimeout(() => {
@@ -52,13 +58,16 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray,
     >
       {spinResult === "perdeu"? (<><p>Ah que pena, perdeu tudo!</p>
       <div>Score: {matchScore}</div>
-        <button onClick={() => setAnimate(!animate)}>Continuar</button>
+        <button  onClick={() => {
+          setAnimate(!animate);
+          setButtonClicked(true);       
+          }} disabled={buttonClicked} >Continuar</button>
       </>):(<><p>Player: {currentUser.username}</p>
       <div>Score: {matchScore}</div>
       <div>Letras escolhidas: {playerLetterArray}</div>
       <div>Escolha uma letra por: {spinResult}
-        <input type="text" disabled={!isActive} value={chosenLetter} 
-        onChange={handleChange} maxLength="1"/>
+        <input type="text" pattern="[A-Za-z]" disabled={!isActive} value={chosenLetter} 
+        onChange={handleChange} maxLength="1" title='Escolha letras'/>
         <button onClick={chooseClickHandler}>Escolher</button>
       </div></>)}    
     </motion.div>

@@ -53,8 +53,6 @@ const Wheel = ({setSpinResult, playerLetter, spinResult, animate, setAnimate }) 
     650,
     1000,
   ];
-
-
   const handleSpinButtonClick = () => {
     if(isActive){
       return
@@ -63,7 +61,6 @@ const Wheel = ({setSpinResult, playerLetter, spinResult, animate, setAnimate }) 
     const randomIndex = Math.random() * wheelValues.length;
     setRotationDegree((prevRotationdegree) => {
     const nextRotationDegree = prevRotationdegree + 15 * randomIndex + 360;
-    
 
     setSpinResult(wheelValues[Math.floor(nextRotationDegree / 15) % 24]);
     return nextRotationDegree;

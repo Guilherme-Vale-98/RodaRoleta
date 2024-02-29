@@ -3,17 +3,10 @@ import "./Card.css";
 
 export const Card = ({letter, chosenLetter}) => {
   const [turn, setTurn] = useState("");
-  const handleClick = () => {
-    if (turn === "") {
-      setTurn("turn");
-      return;
-    }
-    setTurn("");
-    return;
-  };
+  
   return (
     <div className={`${turn} ${chosenLetter} card`}>
-      <div className={`content`} onClick={handleClick}>
+      <div className={`content`}>
         <div className="front">
           {letter}        
         </div>
