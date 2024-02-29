@@ -12,7 +12,10 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray,
 
 
   const handleChange = (event) => {
-    setChosenLetter(event.target.value);
+    console.log(event.target.value);
+    if(/^[A-Za-z]*$/.test(event.target.value)){
+      setChosenLetter(event.target.value);
+    }
   };
 
   const [isActive, setIsActive] = useState(false);
