@@ -1,7 +1,6 @@
   .card {
     perspective: 500px;
     cursor: pointer;
-    border: 2px solid red;
     caret-color: transparent;
   }
   .disabled{
@@ -12,7 +11,7 @@
   .content {
     transition: transform 1s;
     transform-style: preserve-3d;
-    border: 2px solid black;
+    border: 4px solid black;
   }
   
   .turn .content {
@@ -30,6 +29,10 @@
     backface-visibility: hidden;
   }
 
+  
+  .white{
+    background: white;
+  }
   .green{
     background: yellowgreen;
   }

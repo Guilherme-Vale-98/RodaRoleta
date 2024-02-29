@@ -12,16 +12,33 @@ const Match = () => {
   const match = useSelector((state) => state.match);
   const hint = match.keywords ? match.keywords[0].hint : "";
   const word = match.keywords ? match.keywords[0].answer : "";
+  const [isLoading, setIsLoading] = useState(false);
   const [spinResult, setSpinResult] = useState(0);
   const [matchScore, setMatchScore] = useState(0);
   const [playerLetter, setPlayerLetter] = useState('');
-  const [playerLetterArray, setPlayerLetterArray] = useState(['']);
+  const [playerLetterArray, setPlayerLetterArray] = useState([]);
   const dispatch = useDispatch();
   const [animate, setAnimate]=useState(false);
-  
+
+  const [finished, setFinished] = useState(false);
+  useEffect(()=>{
+    setIsLoading(true);
+    dispatch(startMatch({ username: currentUser.username }))
+    .unwrap()
+    .then(()=>{
+      setIsLoading(false);
+    })
+    .catch(()=>{
+      setIsLoading(false);
+    });
+  }, [])
 
   useEffect(()=>{
     setPlayerLetterArray(prevArray => [...prevArray, playerLetter]);
+
+      (word && [...word].every(e => playerLetterArray.includes(e)))? setFinished(true) : null;
+
+    console.log();
   }, [playerLetter])
 
   
@@ -42,26 +59,22 @@ const Match = () => {
   }, [playerLetter, spinResult])
 
 
-  const handleClick = () => {
-    dispatch(startMatch({ username: currentUser.username }))
-      .unwrap()
-      .then()
-      .catch();
-      setPlayerLetterArray([]);
-    return;
-  };
-  return (
-    <>
+  return (<div>
+    {finished? <div><WordBoard  word={word}
+          playerLetterArray={playerLetterArray}/></div>:renderMatch()}
+  </div>    
+  );
+
+  function renderMatch() {
+    return (isLoading? 'Loading...':<>
       <div className="match-container">
-        <button onClick={handleClick}>Generate Match</button>
         <PlayerCard
           spinResult={spinResult}
           matchScore={matchScore}
           setPlayerLetter={setPlayerLetter}
           playerLetterArray={playerLetterArray}
-          animate={animate} 
-          setAnimate={setAnimate}
-        />
+          animate={animate}
+          setAnimate={setAnimate} />
         <WordBoard
           word={word}
           playerLetterArray={playerLetterArray}
@@ -69,10 +82,10 @@ const Match = () => {
         <div className="hint-container">
           {hint}
         </div>
-        <Wheel setSpinResult={setSpinResult} playerLetter={playerLetter} animate={animate} setAnimate={setAnimate} spinResult={spinResult}/>
+        <Wheel setSpinResult={setSpinResult} playerLetter={playerLetter} animate={animate} setAnimate={setAnimate} spinResult={spinResult} />
       </div>
-    </>
-  );
+    </>)
+  }
 };
 
 export default Match;

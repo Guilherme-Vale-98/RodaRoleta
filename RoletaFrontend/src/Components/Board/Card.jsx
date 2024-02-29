@@ -17,7 +17,7 @@ export const Card = ({letter, chosenLetter}) => {
         <div className="front">
           {letter}        
         </div>
-        <div className={`back ${chosenLetter ? "green": ''}`}>         
+        <div className={`back ${letter? "white": ''} ${chosenLetter ? "green": ''}`}>         
         </div>
       </div>
     </div>

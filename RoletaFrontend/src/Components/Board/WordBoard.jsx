@@ -13,8 +13,8 @@ const WordBoard = ({ word, playerLetterArray }) => {
       if (index == 0 || index == 13 || index == 42 || index == 55) {
         return <div key={index}></div>;
       }
-      if(playerLetterArray.includes(element)){
-        return <Card letter={element} chosenLetter="turn" key={index}></Card>;
+      if(playerLetterArray.includes(element) && element){
+        return <Card letter={element} chosenLetter ="turn" key={index}></Card>;
       }
       return <Card letter={element} key={index}></Card>;
     });

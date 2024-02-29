@@ -56,7 +56,6 @@ const Wheel = ({setSpinResult, playerLetter, spinResult, animate, setAnimate }) 
 
 
   const handleSpinButtonClick = () => {
-    console.log(isActive)
     if(isActive){
       return
     }
