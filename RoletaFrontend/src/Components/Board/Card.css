@@ -1,6 +1,5 @@
   .card {
     perspective: 500px;
-    cursor: pointer;
     caret-color: transparent;
   }
   .disabled{

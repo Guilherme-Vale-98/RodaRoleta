@@ -8,5 +8,6 @@
     position: absolute;
     z-index: 5;
     left: 370px;
+    font-size: 1.1rem;
     top: -400px;
 }

@@ -36,9 +36,7 @@ const Match = () => {
   useEffect(()=>{
     setPlayerLetterArray(prevArray => [...prevArray, playerLetter]);
 
-      (word && [...word].every(e => playerLetterArray.includes(e)))? setFinished(true) : null;
-
-    console.log();
+    (word && [...word].every(e => playerLetterArray.includes(e)))? setFinished(true) : null;
   }, [playerLetter])
 
   
