@@ -32,7 +32,7 @@ import com.gui.security.JwtUtils;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:5173", maxAge = 3600, allowCredentials = "true")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
