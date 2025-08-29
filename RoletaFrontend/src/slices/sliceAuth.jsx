@@ -10,7 +10,7 @@ export const register = createAsyncThunk(
   async ({ username, email, password }, thunkAPI) => {
     try {
       const response = await authService.register(username, email, password);
-      thunkAPI.dispatch(setMessage(response.data.message));
+      thunkAPI.dispatch(setMessage("Usuário registrado com Sucesso!"));
       return response.data;
     } catch (error) {
       const message =
@@ -32,12 +32,21 @@ export const login = createAsyncThunk(
       const data = await authService.login(username, password);
       return { user: data };
     } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+      let message;
+      if (error.response) {
+        if (error.response.status === 401) {
+          message = "Usuário ou senha incorretos.";
+        } else {
+          message =
+            error.response.data?.message ||
+            `Erro do servidor: ${error.response.status}`;
+        }
+      } else if (error.request) {
+        message =
+          "Problemas de conexão com o servidor. Tente novamente mais tarde.";
+      } else {
+        message = error.message || "Erro desconhecido.";
+      }
       thunkAPI.dispatch(setMessage(message));
       return thunkAPI.rejectWithValue();
     }

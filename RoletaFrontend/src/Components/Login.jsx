@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { clearMessage } from "../slices/sliceMessage";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import App from "../App";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
 
@@ -37,10 +37,6 @@ const Login = () => {
     setLoading(true);
     dispatch(login({ username, password }))
       .unwrap()
-      .then(() => {
-        navigate("/");
-        window.location.reload();
-      })
       .catch(() => {
         setLoading(false);
       });
@@ -99,11 +95,9 @@ const Login = () => {
       </div>
 
       {message && (
-        <div className="">
-          <div className="" role="alert">
+          <div className="error-box" role="alert">
             {message}
           </div>
-        </div>
       )}
     </div>
   );

@@ -19,8 +19,8 @@ const Match = () => {
   const [playerLetterArray, setPlayerLetterArray] = useState([]);
   const dispatch = useDispatch();
   const [animate, setAnimate] = useState(false);
-
   const [finished, setFinished] = useState(false);
+  
   useEffect(() => {
     setIsLoading(true);
     dispatch(startMatch({ username: currentUser.username }))
