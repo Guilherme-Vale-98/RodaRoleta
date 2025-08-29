@@ -60,13 +60,13 @@ const PlayerCard = ({spinResult, matchScore, setPlayerLetter, playerLetterArray,
       transition={{ duration: 1, ease: "easeInOut"}}
     >
       {spinResult === "perdeu"? (<><p>Ah que pena, perdeu tudo!</p>
-      <div>Score: {matchScore}</div>
+      <div>Pontuação: {matchScore}</div>
         <button  onClick={() => {
           setAnimate(!animate);
           setButtonClicked(true);       
           }} disabled={buttonClicked} >Continuar</button>
-      </>):(<><p>Player: {currentUser.username}</p>
-      <div>Score: {matchScore}</div>
+      </>):(<><p>Jogador: {currentUser.username}</p>
+      <div>Pontuação: {matchScore}</div>
       <div>Letras escolhidas: {playerLetterArray}</div>
       <div>Escolha uma letra por: {spinResult}
         <input type="text" pattern="[A-Za-z]" disabled={!isActive} value={chosenLetter} 

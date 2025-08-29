@@ -7,10 +7,11 @@ import { clearMessage } from "../slices/sliceMessage";
 import { register } from "../slices/sliceAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [successful, setSuccessful] = useState(false);
-
+  const navigate = useNavigate();
   const { message } = useSelector((state) => state.message);
 
   const dispatch = useDispatch();
@@ -40,8 +41,8 @@ const Register = () => {
     password: Yup.string()
       .test(
         "len",
-        "A senha deve conter no mínimo 4 caracteres",
-        (val) => val && val.toString().length >= 4
+        "A senha deve conter no mínimo 6 caracteres",
+        (val) => val && val.toString().length >= 6 && val.toString().length < 40
       )
       .required("Esse campo é obrigatório!"),
   });
@@ -53,6 +54,7 @@ const Register = () => {
       .unwrap()
       .then(() => {
         setSuccessful(true);
+        setTimeout(() => navigate('/'), 1500);
       })
       .catch(() => {
         setSuccessful(false);
@@ -127,7 +129,7 @@ const Register = () => {
         <div>
           <div
             className={
-              successful ? "alert alert-success" : "alert alert-danger"
+              successful ? "alert alert-success" : "alert error alert-danger"
             }
             role="alert"
           >

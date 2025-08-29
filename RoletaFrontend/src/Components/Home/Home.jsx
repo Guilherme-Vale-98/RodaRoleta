@@ -14,13 +14,15 @@ const Home = () => {
   }, [dispatch]);
   return (
     <div className="form">
-      <div className="button-wrapper">
-        <button onClick={() => navigate("/match")}>Jogar</button>
-      </div>
       {currentUser ? (
-        <div className="button-wrapper">
-          <button onClick={logOut}>Logout</button>
-        </div>
+        <>
+          <div className="button-wrapper">
+            <button onClick={() => navigate("/match")}>Jogar</button>
+          </div>
+          <div className="button-wrapper">
+            <button onClick={logOut}>Logout</button>
+          </div>
+        </>
       ) : (
         <>
           <div className="button-wrapper">
