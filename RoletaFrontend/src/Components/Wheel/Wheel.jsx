@@ -3,29 +3,41 @@ import { motion, useAnimation } from "framer-motion";
 import wheel from "../../assets/wheel.png";
 import "./Wheel.css";
 
-const Wheel = ({setSpinResult, playerLetter, spinResult, animate, setAnimate }) => {
+const Wheel = ({
+  setSpinResult,
+  playerLetter,
+  spinResult,
+  animate,
+  setAnimate,
+}) => {
   const [rotationDegree, setRotationDegree] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const controls = useAnimation();
 
   const toggleAnimation = () => {
     setIsActive(!isActive);
-    if(spinResult==='perdeu'){
-      setTimeout(() => {
-        controls.start({ x: isActive ? 0 : 900 });      
-      }, isActive ? 1000 : 9 * 1000);
-      return
+    if (spinResult === "perdeu") {
+      setTimeout(
+        () => {
+          controls.start({ x: isActive ? 0 : 900 });
+        },
+        isActive ? 1000 : 9 * 1000
+      );
+      return;
     }
-    setTimeout(()=>{
-      controls.start({ x: isActive ? 0 : 900 });
-    }, isActive ? 3 * 1000 : 9 * 1000);
+    setTimeout(
+      () => {
+        controls.start({ x: isActive ? 0 : 900 });
+      },
+      isActive ? 3 * 1000 : 9 * 1000
+    );
   };
 
-  useEffect(()=>{  
-    if(rotationDegree){
+  useEffect(() => {
+    if (rotationDegree) {
       toggleAnimation();
-    }     
-  }, [animate])
+    }
+  }, [animate]);
 
   const wheelValues = [
     "perdeu",
@@ -54,40 +66,43 @@ const Wheel = ({setSpinResult, playerLetter, spinResult, animate, setAnimate }) 
     1000,
   ];
   const handleSpinButtonClick = () => {
-    if(isActive){
-      return
+    if (isActive) {
+      return;
     }
     setAnimate(!animate);
     const randomIndex = Math.random() * wheelValues.length;
     setRotationDegree((prevRotationdegree) => {
-    const nextRotationDegree = prevRotationdegree + 15 * randomIndex + 360;
+      const nextRotationDegree = prevRotationdegree + 15 * randomIndex + 360;
 
-    setSpinResult(wheelValues[Math.floor(nextRotationDegree / 15) % 24]);
-    return nextRotationDegree;
+      setSpinResult(wheelValues[Math.floor(nextRotationDegree / 15) % 24]);
+      return nextRotationDegree;
     });
   };
 
-
   return (
-      <motion.div className="wheel-container toLeft"
+    <motion.div
+      className="wheel-container toLeft"
       initial={{ x: 0 }}
       animate={controls}
-      transition={{ duration: 1, ease: "easeInOut"}}
-      >
-        <div className="picker"></div>
-        <motion.img
-          src={wheel}
-          alt="Wheel"
-          animate={{ rotate: rotationDegree }}
-          transition={{
-            duration: 7,
-            ease: [0.2, 0.8, 0.2, 0.8],
-          }}
-        />
-        <div className="spin-button" onClick={handleSpinButtonClick}>
-          Spin Wheel
-        </div>
-      </motion.div>
+      transition={{ duration: 1, ease: "easeInOut" }}
+    >
+      <div className="picker"></div>
+      <motion.img
+        src={wheel}
+        alt="Wheel"
+        animate={{ rotate: rotationDegree }}
+        transition={{
+          duration: 7,
+          ease: [0.2, 0.8, 0.2, 0.8],
+        }}
+      />
+      <div className="spin-button" onClick={handleSpinButtonClick}>
+        <button className="btn-3d" type="button" id="spinBtn" aria-pressed="false">
+          <span className="btn-label">Rode a Roleta!</span>
+          <span className="btn-shine" aria-hidden="true"></span>
+        </button>
+      </div>
+    </motion.div>
   );
 };
 

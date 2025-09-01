@@ -6,9 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import matchService from "../../services/MatchService";
 import { startMatch, addScore, saveScore } from "../../slices/sliceMatch";
 import PlayerCard from "../PlayerCard/PlayerCard";
+import { Navigate } from "react-router-dom";
 
 const Match = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
+
+  if (!currentUser) {
+    return <Navigate to="/" replace />;
+  }
+
   const match = useSelector((state) => state.match);
   const hint = match.keywords ? match.keywords[0].hint : "";
   const word = match.keywords ? match.keywords[0].answer : "";
@@ -20,7 +26,7 @@ const Match = () => {
   const dispatch = useDispatch();
   const [animate, setAnimate] = useState(false);
   const [finished, setFinished] = useState(false);
-  
+
   useEffect(() => {
     setIsLoading(true);
     dispatch(startMatch({ username: currentUser.username }))
@@ -64,6 +70,10 @@ const Match = () => {
       {finished ? (
         <div>
           <WordBoard word={word} playerLetterArray={playerLetterArray} />
+          <div className="finish-card">
+            <span>Parabéns você conseguiu !!</span>
+            <span>Pontuação: {matchScore}</span>
+          </div>
         </div>
       ) : (
         renderMatch()

@@ -2,7 +2,7 @@ import axios from "axios";
 import authHeader from "./authHeader";
 
 
-const API_URL = "http://localhost:8080/user/match";
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/user/match`;
 
 
 const saveMatchScore = (matchId, score) => {

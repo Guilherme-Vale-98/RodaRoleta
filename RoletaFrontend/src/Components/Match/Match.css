@@ -6,6 +6,21 @@
     position: relative;
     top: 30px;
 }
+.finish-card{
+    position: relative;
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 1.5rem;
+    font-size: large;
+    border: 7px solid rgb(145, 100, 9);
+    background-color: rgb(66, 74, 109);
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40px;
+}
 .hint-container{
     width: auto;
     min-width: 60%;

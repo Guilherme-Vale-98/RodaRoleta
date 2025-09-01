@@ -6,7 +6,6 @@ import { logout } from "../../slices/sliceAuth";
 const Home = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  console.log(currentUser);
   const navigate = useNavigate();
 
   const logOut = useCallback(() => {

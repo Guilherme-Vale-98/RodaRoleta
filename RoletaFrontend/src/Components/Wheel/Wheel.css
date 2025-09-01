@@ -28,15 +28,118 @@
 
   .spin-button {
     position: absolute;
-    top: 50%;
+    top: 54%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 10px;
-    background-color: #4285f4; /* Customize the background color */
-    color: #fff; /* Customize the text color */
+    padding: 10px; 
+    color: #fff; 
     cursor: pointer;
     border: none;
     border-radius: 5px;
     outline: none;
+    perspective: 800px; 
+    display: inline-block;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
   }
   
+
+
+.spin-button .btn-3d {
+  --pad-x: 28px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--btn-h);
+  padding: 0 var(--pad-x);
+  border-radius: var(--btn-radius);
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 16px;
+  line-height: 1;
+  color: white;
+  background: linear-gradient(180deg, var(--btn-color-start), var(--btn-color-end));
+  box-shadow:
+    0 calc(var(--depth) / 1.8) calc(var(--depth) * 1.2) rgba(10, 20, 30, var(--shadow-alpha)),
+    inset 0 -3px 6px rgba(0,0,0,0.08);
+  transform-style: preserve-3d;
+  transition: transform 180ms cubic-bezier(.2,.9,.2,1), box-shadow 180ms, filter 160ms;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.spin-button .btn-3d::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(-1 * var(--depth));
+  height: var(--depth);
+  border-radius: calc(var(--btn-radius) - 2px);
+  background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.18));
+  z-index: -1;
+  transition: bottom 180ms cubic-bezier(.2,.9,.2,1), transform 180ms;
+  transform-origin: top center;
+  filter: blur(0.4px);
+}
+
+
+.spin-button .btn-shine {
+  position: absolute;
+  top: 8%;
+  left: 6%;
+  width: 88%;
+  height: 46%;
+  pointer-events: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.08));
+  mix-blend-mode: screen;
+  transform: translateZ(12px);
+  transition: opacity 160ms;
+  z-index: 1;
+}
+
+
+.spin-button .btn-label {
+  position: relative;
+  z-index: 2;
+  color: rgba(56, 56, 56, 0.93);
+}
+
+.spin-button .btn-3d:active,
+.spin-button .btn-3d[aria-pressed="true"] {
+  transform: translateY(calc(var(--depth) / 2)) rotateX(0deg);
+  box-shadow: 0 4px 8px rgba(10,20,30,0.12);
+}
+
+.spin-button .btn-3d:active::after,
+.spin-button .btn-3d[aria-pressed="true"]::after {
+  bottom: calc(-1 * var(--depth) + (var(--depth) / 2));
+  transform: scaleY(0.6);
+}
+
+.spin-button .btn-3d:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+.spin-button .btn-3d:focus-visible {
+  outline: none; 
+  box-shadow: 0 calc(var(--depth) / 1.8) calc(var(--depth) * 1.2) rgba(10, 20, 30, var(--shadow-alpha)),
+              0 0 0 4px rgba(78,165,230,0.18);
+}
+.spin-button .btn-3d:focus {
+  box-shadow:
+    0 calc(var(--depth) / 1.8) calc(var(--depth) * 1.2) rgba(10, 20, 30, var(--shadow-alpha)),
+    0 0 0 4px rgba(78,165,230,0.18);
+}
+
+
+@media (max-width: 420px) {
+  .spin-button .btn-3d { font-size: 14px; --pad-x: 20px; --btn-h: 48px; }
+}
