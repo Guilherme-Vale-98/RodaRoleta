@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import "../app.css";
+import "../App.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { clearMessage } from "../slices/sliceMessage";
 import { register } from "../slices/sliceAuth";

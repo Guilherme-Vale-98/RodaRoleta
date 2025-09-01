@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../app.css";
+import "../App.css";
 import { login } from "../slices/sliceAuth";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
